@@ -50,7 +50,7 @@ class ViewController: UIViewController {
     }
     
     @objc func textFieldDidChange() {
-        if searchField.text != "" {
+        if let text = searchField.text, !text.isEmpty {
             searchView.isHidden = true
             stopTimer()
         } else {
@@ -59,20 +59,20 @@ class ViewController: UIViewController {
         }
     }
     
-func stopTimer() {
-    timer?.invalidate()
-}
+    func stopTimer() {
+        timer?.invalidate()
+    }
     
-func resumeTimer() {
-    currentLabel.text = strings[index-1]
-    timer = Timer.scheduledTimer(
-        timeInterval: 2,
-        target: self,
-        selector: #selector(updateLabels),
-        userInfo: nil,
-        repeats: true
-    )
-}
+    func resumeTimer() {
+        currentLabel.text = strings[index-1]
+        timer = Timer.scheduledTimer(
+            timeInterval: 2,
+            target: self,
+            selector: #selector(updateLabels),
+            userInfo: nil,
+            repeats: true
+        )
+    }
     
     func animateListOfLabels() {
         currentLabel.text = strings[index-1]
